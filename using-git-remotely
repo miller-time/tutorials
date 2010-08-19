@@ -1,0 +1,24 @@
+This is a git tutorial for working from 2 different locations. It requires
+having an ssh server set up, and having access to it from the other location.
+This is probably considered an intermediate level for using git, but please
+email me any questions at miller.time.baby@gmail.com
+
+
+
+So I want to use a git repo on home pc and laptop?!
+Alright, home pc [home] is an ssh server, so do git init there
+  home> git init
+
+Then from the laptop whenever I need the repo and am ready to work..
+  laptop> git clone home:path/to/.git
+
+Then if I ever want to push that repo to the server..
+  laptop> git checkout -b laptop
+
+This names a new branch "laptop" and now I can push that.
+  laptop> git push origin laptop
+
+Then to receive the changes from that branch just have to merge.
+  home> git merge laptop
+
+And voila! I have successfully hacked remotely and collaborated my work!
