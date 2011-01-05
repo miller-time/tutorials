@@ -49,6 +49,13 @@ username=>
 	but with your user name. This is the default database. You've successfully created your first one under
 	your normal Linux profile!
 
+The last step for setting up Postgres is to make it easier to launch your PostgreSQL server. Here is one possible
+method. Put the following into a file called pgsetup:
+sudo -u postgres /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1
+
+This file will come in handy after a reboot, so go ahead and do so. Give that file execute persmission, and type 
+"./pgsetup".
+You will then want to press Ctrl-Z and type "bg" to move the process to the background.
 =====================================================================================================================
 The rest of this tutorial is for CS386.
 
@@ -58,3 +65,19 @@ createdb sailors
 createdb spy
 createdb library
 	 This will create empty databases for each of the supplied sets of tables.
+Now load each with their tables like so:
+$ psql sailors
+> \i sailors.sql
+> \q
+
+$ psql spy
+> \i spy.sql
+> \q
+
+$ psql library
+> \i library.sql
+> \q
+  
+	Note: file names may differ.
+
+Alright, you should be ready to start querying those databases!
