@@ -1,0 +1,60 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ This is the instructions to download Postgres source, build it, install it,
++ and set up the roles for it. For CS386, it also includes the steps necessary
++ to set up the sample database tables.
++ Author: Russell Miller
++ Jan 4 2011
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Download the Postgres source
+
+Follow the INSTALL file that is included:
+  	 - ./configure
+		(make sure it completes, install any packages that are missing)
+	 - make
+	 - su
+	 - make install
+	 - adduser postgres
+	   	(give it a full name, everything else optional)
+	 - mkdir /usr/local/pgsql/data
+	 - chown postgres /usr/local/pgsql/data
+	 - su - postgres
+	 - /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+	 - /usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data >logfile 2>&1 &
+	 - /usr/local/pgsql/bin/createdb test
+	 - /usr/local/pgsql/bin/psql test
+
+At this point you'll have a prompt that says:
+test=#
+
+What we want is to now add the role for your normal username. The way I did this is the following commands, from
+this prompt:
+create role username login;
+alter role username createdb;
+
+      where username is your actual user name.
+
+You may now quit PostgreSQL with "\q". You may then logout of your "postgres" user. This should return you to root.
+Go ahead and logout and you should return to your normal user. The next step is to add the postgreSQL commands to
+your path. I use a ~/.profile file to edit my path. Google the file for your setup. Here's what I added:
+PATH=${PATH}:/usr/local/pgsql/bin
+export PATH
+
+You'll then need to source the file by typing "source ~/.profile" or just ". ~/.profile".
+You should now be able to create a new database. By typing just:
+createdb
+psql
+	you should end up at a prompt that says:
+username=>
+	but with your user name. This is the default database. You've successfully created your first one under
+	your normal Linux profile!
+
+=====================================================================================================================
+The rest of this tutorial is for CS386.
+
+Download the .sql files from the class website. There are 3 databases to set up.
+If you're still at the previous database prompt use "\q" to quit. Then type the following:
+createdb sailors
+createdb spy
+createdb library
+	 This will create empty databases for each of the supplied sets of tables.
