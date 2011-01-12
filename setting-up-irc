@@ -1,0 +1,85 @@
+####################
+## Setting Up ... ##
+####################
+
+##### ###   ####
+  #   #  # #
+  #   ###  #
+##### #  #  ####
+
+Author: Russell Miller
+Date: Jan 12 2011
+
+Contents
+--------
+1.1 Setting up IRC on Linux
+1.2 Setting up IRC on Windows
+1.3 Screen
+1.4 Non-platform specific steps
+1.5 Weechat, online help for advanced tips
+
+###########################
+1.1 Setting up IRC on Linux
+###########################
+
+This is possibly the easiest method. If you have a debian-based Linux distribution like Ubuntu,
+you can try to run `irssi` from the terminal. It should let you know that you can just install it
+if that program isn't already installed. You may need to run `apt-get install irssi` as a superuser.
+
+irssi is a command line IRC program. Once it's running, the easiest setup is to just type this in the
+program's shell.
+
+	  /connect -ssl irc.cat.pdx.edu 6697
+
+This will connect you to the CAT IRC server, using SSL to secure your connection. The 6697 part is the port
+the server uses for a secure IRC connection. From here, you can skip to section 1.3
+
+#############################
+1.2 Setting up IRC on Windows
+#############################
+
+From Windows, I'm going to recommend you use Putty to ssh to a reliable server and set up a persistent session.
+To start, you'll need to download Putty. If you're on a Windows computer at PSU you will just need to find the
+executable on a shared drive. I recommend, if you are downloading Putty, to go to their website
+http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+Putty is a small program, and you'll simply want to create a shortcut to Putty.exe in a convenient place.
+
+Setting Putty up is extremely easy. You will see 2 important boxes on the Configuration screen: 
+'Host Name (or IP address)' and 'Saved Sessions'
+The first time you run Putty simply type the following into the 'Host Name' box
+    
+    username@ruby.cat.pdx.edu
+
+Replacing 'username' with your MCECS username. You can also choose a different server on the PSU network, or
+use a personal server that has an IRC client installed. You'll want a reliable server that is going to have
+generous uptime.
+
+The next step is to type a session name in 'Saved Sessions'. You can just call it 'irc' if you want. Then click
+'Save' on the right. All done. Click 'Open' and you'll have a terminal open on that server. From there you can
+follow the steps in section 1.1. You may also want to see the advanced section 1.5 for things like ssh keys.
+
+##########
+1.3 Screen
+##########
+
+This section is extremely important. By now you should know how to connect to an IRC server from a linux command
+line. What we're going to do is set up a *persistent* connection to that server.
+From the Linux command line, type the following
+
+     screen
+
+Then hit Enter (as the message on-screen suggests). You're now running screen. Pretty simple, huh?
+Just wait. It gets better. Now you can start up any program you want. For now, we'll start irssi.
+     
+     irssi
+
+Follow the normal instructions for connecting to the IRC server. (The command is shown in section 1.1)
+Your IRC session is now running, and it's persistent! Too easy? Let's explain how. Next to 'detach' from
+your screen session, do the screen command Ctrl-a d. That's the CTRL key and `a` at the same time, followed
+by the `d` key by itself. You should see irssi disappear and have a message in your terminal that says 
+'[screen detached]'. You can now also disconnect from your ssh connection. Typing `exit` or pressing Ctrl-d
+will do so.
+
+
+Setting up PuttyGen on Windows:
+http://theillustratednetwork.mvps.org/Ssh/copSSH-WinSCP-KeyPair.html
