@@ -78,8 +78,40 @@ Your IRC session is now running, and it's persistent! Too easy? Let's explain ho
 your screen session, do the screen command Ctrl-a d. That's the CTRL key and `a` at the same time, followed
 by the `d` key by itself. You should see irssi disappear and have a message in your terminal that says 
 '[screen detached]'. You can now also disconnect from your ssh connection. Typing `exit` or pressing Ctrl-d
-will do so.
+will do so. You may be asking why we just did all this. Well let's reconnect to that same ssh server. Once
+you've done so, type the following
+       
+       screen -r
 
+If that worked correctly, your IRC session will appear magically! This is the suggested method for 'attaching'
+and 'detaching' from your persistent connection. This way you will always be on IRC, whether you are actually at
+a keyboard or not. You'll be able to see messages other people send you while you're AFK, and you won't be flooding
+people's screen each time you join a channel or leave.
+
+###############################
+1.4 Non platform-specific steps
+###############################
+
+You're not quite done, just cause you've connected to an IRC server. You're just staring down an empty hallway
+at this point. You'll want to step into a room now, or 'channel'. Some of the popular channels on the PSU network
+are #cschat, #chat, and #support. You may hear of others. You also may hear of other servers with their own
+channels.
+To join one of those channels, for example I'll use #chat, type this command
+
+     /join #chat
+
+You can now talk to anyone else who is in this channel. There should be a names list upon joining. But if you
+miss it, or want an updated list, type
+     
+     /names
+
+If you want to know what your name currently is, or your 'nick', type
+
+     /whoami
+
+If you want to change it to something else, simply type
+
+     /nick Charles
 
 Setting up PuttyGen on Windows:
 http://theillustratednetwork.mvps.org/Ssh/copSSH-WinSCP-KeyPair.html
