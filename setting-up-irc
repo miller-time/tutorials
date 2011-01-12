@@ -15,7 +15,7 @@ Contents
 1.1 Setting up IRC on Linux
 1.2 Setting up IRC on Windows
 1.3 Screen
-1.4 Non-platform specific steps
+1.4 Non platform-specific steps
 1.5 Weechat, online help for advanced tips
 
 ###########################
@@ -113,5 +113,42 @@ If you want to change it to something else, simply type
 
      /nick Charles
 
+Or something other than Charles if you don't like that name. If you REALLY like the name you choose, you'll
+probably want to register that nickname. Type the following for help on that topic.
+
+     /msg NickServ help
+
+This will get you started with using the NickServ service. The more specific command that will help is
+
+     /msg NickServ help register
+
+Just read the instructions carefully. Once you have the registration complete, the only way that nick will
+be usable in the future is by authorizing. For help with this do
+
+     /msg NickServ help identify
+
+That's a pretty good starting point. Anything else would be considered intermediate or advanced setup.
+
+#################
+1.5 Advanced Tips
+#################
+
+This section is not required in order to use IRC. But some of these things may make your life easier.
+
+Setting up an SSH key can make it more secure and easier to connect to the server you run IRC from.
+On linux there is a command to do this. A full set of instructions is here
+http://en.wikipedia.org/wiki/Ssh-keygen
+
+On Windows there's a special method for doing this. You'll need to download PuttyGen from the Putty website.
+http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 Setting up PuttyGen on Windows:
 http://theillustratednetwork.mvps.org/Ssh/copSSH-WinSCP-KeyPair.html
+
+There are other things you can do with ssh, try `man ssh` for the Manual Page. irssi is just one of
+many clients that can connect to an IRC server. For more help with its features and commands you can just
+type `/help` in irssi. Or check out their website, where they do have online documentation.
+http://irssi.org/
+
+Another IRC client that I personally really enjoy is Weechat. You may need to compile the program to use
+it on your system or on the school campus. I have successfully done both simply by reading their documentation.
+http://www.weechat.org/
