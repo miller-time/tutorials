@@ -1,0 +1,112 @@
+So this tutorial is spawned from my interest in having 2 Github accounts.
+I'll explain why...
+
+I think it would be a great idea to organize Github repositories by genre.
+For example, I would like to put all of my school work in one place. A folder, or
+something similar would be perfect. However, this is not a feature of Github.
+What is suggested on their forum is to instead create a second account and store
+work there.
+
+So go ahead, sign up for another FREE account! Do it! It's great! Cause then you'll
+go to set up the account, and load your public SSH key on it, and it'll tell you that
+key is already taken!!!
+
+Thus, this tutorial.
+
+
+------------
+
+Step 1 will assume you've registered your second Github account and your first one
+is configured to work with your existing SSH key. What we'll be doing is generating
+a second SSH key pair. In this example I'll be using rsa keys and I'll use silly
+names to represent the commands that are necessary, please filter appropriately.
+
+
+1. Generate a new SSH key pair.
+
+$ ssh-keygen -t rsa
+
+2. At the prompt, you'll need to give it a filename. Your original SSH key should
+be stored in ~/.ssh/id_rsa so we'll instead use something like /home/billybob/.ssh/keytwo
+Except, 
+billybob = your username
+keytwo = filename for your key pair
+
+3. Give it a good password.
+
+4. Next we'll need to edit your ~/.ssh/config file. If you don't have one that's fine,
+but they're very useful if you use SSH a lot. Here's an example file:
+
+Host mywork
+     HostName fancycompany.longurl.com
+     User billybob
+
+Host github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/id_rsa
+
+Host github-two
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/keytwo
+
+What we just did is make a shortcut to SSH to billybob's work. If you've ever typed
+something like
+
+$ ssh billybob@fancycompany.longurl.com
+
+then you've now got a neat shortcut. Instead you can just type
+
+$ ssh mywork
+
+or even 
+
+$ scp mywork:~/path/to/some/file.txt ~/documents/
+
+to easily copy files from one location to another.
+
+The more pertinent part of the file is the Github part, obviously.
+The first Github host is set up to use your original SSH key, and connect to
+your original Github account. When you copy Github URLs they will still work
+correctly.
+
+The last part is for setting up your new SSH key with your new Github account.
+We're just pointing Github to a different file, to match with your new account.
+
+5. Save your public key on your new Github profile. This can be done by clicking
+"Account Settings" at the top right of the page, then going to "SSH Public Keys"
+on the left, and clicking "Add another public key"
+
+6. We're almost there, we need to set up a repository now. Go to your Github dashboard
+and click "New Repository"
+
+7. You'll be taken to a page with several headings like "Global setup" and "Next steps"
+There is a URL on this page something like "git@github.com:billybob/test.git"
+We want to either copy that, or keep a mental note. But don't do the command that they're
+suggesting.
+
+Instead we need to start a local repository.
+
+$ git init
+$ touch README
+$ git add README
+$ git commit -m "first commit"
+
+But then we'll add the origin differently, we need to specify that different SSH identity!
+Depending on what you put in ~/.ssh/config, the @github.com part needs to change to whatever you
+wrote after Host. We used "github-two" above.
+
+$ git remote add origin git@github-two:billybob/test.git
+
+What this does is tell Github that you'll be identifying with a different SSH key, and
+matches with the correct one when you try to connect. Now go ahead and push it.
+
+$ git push origin master
+
+8. You should be all set. If you use ssh-agent and you're accustomed to typing "ssh-add"
+you can simply type
+
+$ ssh-add ~/.ssh/keytwo
+
+to add your second identity.
