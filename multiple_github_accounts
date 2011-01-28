@@ -101,6 +101,7 @@ $ git remote add origin git@github-two:billybob/test.git
 
 What this does is tell Github that you'll be identifying with a different SSH key, and
 matches with the correct one when you try to connect. Now go ahead and push it.
+-->You will ALWAYS need to make this change when adding your Github URLs<--
 
 $ git push origin master
 
